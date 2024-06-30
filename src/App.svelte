@@ -19,7 +19,7 @@
 
   function handleClose() {
     showVisualization.set(false);
-    mapRef.flyToInitialPosition()
+    mapRef.flyToInitialPosition();
   }
 
   let my_data;
@@ -31,13 +31,10 @@
 </script>
 
 <main>
+  <h1>Conflict and Peace Process Map</h1>
   <Map bind:this={mapRef} {mapboxToken} on:polygonClick={handlePolygonClick} />
   {#if $showVisualization}
-    <Visualization
-      {selectedProperties}
-      {my_data}
-      on:close={handleClose}
-    />
+    <Visualization {selectedProperties} {my_data} on:close={handleClose} />
   {/if}
 </main>
 
@@ -48,5 +45,22 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+  }
+  h1 {
+    position: absolute;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
+    color: white;
+    z-index: 999;
+    top: 0px;
+    background-color: black;
+    font-family: "Montserrat";
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5em;
+    }
   }
 </style>
