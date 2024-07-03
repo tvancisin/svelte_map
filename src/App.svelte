@@ -1,41 +1,40 @@
 <script>
-  import { onMount } from "svelte";
+  import { data, messy, loadData } from "./lib/stores";
   import Map from "../Map.svelte";
   import Visualization from "../Visualization.svelte";
-  import { writable } from "svelte/store";
-  import { data, messy_data, loadData } from "./lib/stores";
-  import { get } from "svelte/store";
+  import * as d3 from "d3";
 
+  $: renderedData = $data;
+  $: renderedMessyData = $messy;
   export let mapboxToken =
     "pk.eyJ1Ijoic2FzaGFnYXJpYmFsZHkiLCJhIjoiY2xyajRlczBlMDhqMTJpcXF3dHJhdTVsNyJ9.P_6mX_qbcbxLDS1o_SxpFg";
   let mapRef;
-  const showVisualization = writable(false);
-  let selectedProperties = "Ukraine";
+  let selectedProperties;
+  let individual_info;
 
   function handlePolygonClick(event) {
     selectedProperties = event.detail.ADMIN;
-    showVisualization.set(true);
+    d3.select(".visualization").style("right", "0px");
   }
 
   function handleClose() {
-    showVisualization.set(false);
+    d3.select(".visualization").style("right", "-500px")
     mapRef.flyToInitialPosition();
   }
 
-  let my_data;
+  $: if (selectedProperties) {
+        let the_info = renderedData.features;
+        individual_info = the_info.find(function (d) {
+            return d.properties.country == selectedProperties;
+        });
+  }
 
-  onMount(async () => {
-    await loadData();
-    my_data = get(data);
-  });
 </script>
 
 <main>
   <h1>Conflict and Peace Process Map</h1>
   <Map bind:this={mapRef} {mapboxToken} on:polygonClick={handlePolygonClick} />
-  {#if $showVisualization}
-    <Visualization {selectedProperties} {my_data} on:close={handleClose} />
-  {/if}
+  <Visualization {individual_info} {renderedMessyData} on:close={handleClose} />
 </main>
 
 <style>
