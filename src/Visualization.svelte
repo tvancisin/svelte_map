@@ -178,6 +178,10 @@
         <pre id="month"></pre>
     </div>
 
+    <div id="peace_title_div">
+        <h3>Timeline</h3>
+    </div>
+
     <div id="chart" bind:clientHeight={svg_height}>
         <svg width={details_width} height={svg_height}>
             <!-- <g
@@ -310,6 +314,7 @@
         background-color: #171d26;
         height: 45%;
         margin: 5px;
+        border-radius: 2px;
     }
 
     #peace_content {
@@ -319,6 +324,7 @@
         font-size: 14px;
         background-color: #171d26;
         margin: 5px;
+        border-radius: 2px;
     }
 
     /* width */
