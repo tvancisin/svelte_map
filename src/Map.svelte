@@ -160,6 +160,7 @@
                 hoveredPolygonId = null;
             });
         });
+        window.addEventListener("load", adjustMapForWindowSize);
         window.addEventListener("resize", adjustMapForWindowSize);
     });
 

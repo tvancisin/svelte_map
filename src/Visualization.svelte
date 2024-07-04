@@ -13,10 +13,10 @@
     let gx;
     let width = 1000;
     let height = 500;
-    export let marginTop = 20;
-    export let marginRight = 20;
-    export let marginBottom = 30;
-    export let marginLeft = 40;
+    // export let marginTop = 20;
+    // export let marginRight = 20;
+    // export let marginBottom = 30;
+    // export let marginLeft = 40;
     let details_width, details_height, svg_height;
     let individual_peace_process_name = "Syrian Local Agreements";
 
