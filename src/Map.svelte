@@ -1,21 +1,17 @@
 <script>
     import { onMount, createEventDispatcher } from "svelte";
     import mapboxgl from "mapbox-gl";
-    import { all_countries } from "./src/lib/all_countries";
+    import { all_countries } from "./lib/all_countries";
     import * as turf from "turf";
-
-    export let mapboxToken;
-    let hoveredPolygonId = null;
 
     const dispatch = createEventDispatcher();
 
     let map;
+    let hoveredPolygonId = null;
 
     function adjustMapForWindowSize() {
-        const centerCoordinates = map.getCenter();
-
+        let centerCoordinates = map.getCenter();
         if (window.innerWidth <= 768) {
-            // map.setZoom(1.1);
             map.flyTo({
                 center: [centerCoordinates.lng, centerCoordinates.lat],
                 zoom: 1.4,
@@ -34,7 +30,8 @@
     }
 
     onMount(() => {
-        mapboxgl.accessToken = mapboxToken;
+        mapboxgl.accessToken =
+            "pk.eyJ1Ijoic2FzaGFnYXJpYmFsZHkiLCJhIjoiY2xyajRlczBlMDhqMTJpcXF3dHJhdTVsNyJ9.P_6mX_qbcbxLDS1o_SxpFg";
         map = new mapboxgl.Map({
             container: map,
             style: "mapbox://styles/sashagaribaldy/clxstrxes00qv01pf8dgl4o20",
@@ -63,9 +60,9 @@
                         //   [1000, "#400000"],
                         // ],
                         stops: [
-                            [1, "#E8E8E8"],
-                            [100, "#C0C0C0"],
-                            [1000, "#505050"],
+                            [1, "#BEBEBE"],
+                            [100, "#989898"],
+                            [1000, "#484840"],
                         ],
                     },
                     "fill-opacity": [

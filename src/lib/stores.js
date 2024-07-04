@@ -55,9 +55,9 @@ let messy_data = {
 
 async function loadData() {
     const [csvData1, csvData2, csvData3] = await Promise.all([
-        d3.csv("../public/newest_data.csv"),
-        d3.csv("../public/prog.csv"),
-        d3.csv("../public/local_v8_1.csv"),
+        d3.csv("newest_data.csv"),
+        d3.csv("prog.csv"),
+        d3.csv("local_v8_1.csv"),
     ]);
 
     let country_array = []

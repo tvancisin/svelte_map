@@ -1,7 +1,7 @@
 <script>
     import { onMount } from "svelte";
-    import * as d3 from "d3";
     import { createEventDispatcher } from "svelte";
+    import * as d3 from "d3";
 
     export let individual_info;
     export let renderedMessyData;
@@ -73,19 +73,6 @@
     );
 
     function updateVisualization(properties) {
-        // chart.text(selectedProperties);
-        // console.log(my_data, properties);
-        // let the_info = my_data.features;
-        // let individual_info = the_info.find(function (d) {
-        //     return d.properties.country == selectedProperties;
-        // });
-        // console.log(individual_info);
-        // if (individual_info !== undefined) {
-        //     console.log("here");
-        //     d3.select("#peace").html(individual_info.properties.peace);
-        //     d3.select("#year").html(individual_info.properties.year);
-        //     d3.select("#month").html(individual_info.properties.month);
-        // }
     }
 
     function closeVisualization() {
@@ -93,26 +80,13 @@
     }
 
     onMount(() => {
-        //     .attr("id", "svg")
-        //     .attr("width", 400)
-        //     .attr("height", 400);
-        // messy_svg.append("g").attr("class", "xAxis");
-        // chart = svg
-        //     .append("text")
-        //     .attr("x", 250)
-        //     .attr("y", 150)
-        //     .attr("text-anchor", "middle")
-        //     .style("font-size", "24px")
-        //     .style("fill", "steelblue")
-        //     .text(selectedProperties || "No data");
-        // updateVisualization(selectedProperties);
     });
 
     let peace_process_data = [];
     let new_ppdata = [];
 
     $: if (individual_info) {
-        console.log(renderedMessyData);
+        // console.log(renderedMessyData);
         d3.select("#peace").html(individual_info.properties.peace);
         d3.select("#year").html(individual_info.properties.year);
         d3.select("#month").html(individual_info.properties.month);
@@ -141,7 +115,6 @@
     }
 
     let segment = function (d, i, scale) {
-        console.log(d, i, peace_process_data);
         if (i < peace_process_data[d.PPName].length - 1) {
             var start = {
                 x: Math.round(scale(parseTime(d.Dat))),
@@ -184,6 +157,7 @@
         console.log(item);
         return item;
     }
+
 </script>
 
 <div
@@ -207,7 +181,7 @@
         <pre id="month"></pre>
     </div>
 
-    <div id="chart" bind:clientHeight={svg_height}>
+    <div id="chart" bind:clientHeight={svg_height} >
         <svg width={details_width} height={svg_height}>
             <!-- <g
                 bind:this={gx}
@@ -235,8 +209,6 @@
             >
                 <g>
                     {#each new_ppdata as d, i}
-                        {logItem(d)}
-
                         <path
                             d={segment(d, i, messyScaleX)}
                             stroke="white"
@@ -245,10 +217,6 @@
                     {/each}
                 </g>
             </g>
-
-            <!-- {#each the_data as { a, b, r, fill }}
-                <circle cx={xScale(a)} cy={yScale(b)} {r} {fill} />
-            {/each} -->
         </svg>
     </div>
 </div>
@@ -257,10 +225,10 @@
     .visualization {
         color: white;
         position: fixed;
-        right: -500px;
+        right: -100%;
         bottom: 0px;
         width: 500px;
-        height: 90%;
+        height: calc(100% - 45px);
         transition: right 0.3s ease;
         background: black;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
