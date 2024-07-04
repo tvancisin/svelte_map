@@ -7,21 +7,25 @@
     const dispatch = createEventDispatcher();
 
     let map;
+    let current_zoom = 2.5;
     let hoveredPolygonId = null;
 
     function adjustMapForWindowSize() {
         let centerCoordinates = map.getCenter();
         if (window.innerWidth <= 768) {
+            current_zoom = 1.4
             map.flyTo({
                 center: [centerCoordinates.lng, centerCoordinates.lat],
                 zoom: 1.4,
             });
         } else if (window.innerWidth <= 1000) {
+            current_zoom = 2.2 
             map.flyTo({
                 center: [centerCoordinates.lng, centerCoordinates.lat],
                 zoom: 2.2,
             });
         } else {
+            current_zoom = 2.5
             map.flyTo({
                 center: [centerCoordinates.lng, centerCoordinates.lat],
                 zoom: 2.5,
@@ -165,7 +169,7 @@
     });
 
     function flyToInitialPosition() {
-        map.flyTo({ center: [50.224518, 22.213995], zoom: 2.5 });
+        map.flyTo({ center: [50.224518, 22.213995], zoom: current_zoom });
     }
 
     export { flyToInitialPosition };

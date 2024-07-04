@@ -72,13 +72,12 @@
         d3.axisBottom(messyScaleX).tickFormat(d3.timeFormat("%Y")).ticks(8),
     );
 
-    function updateVisualization(properties) {}
+    // function updateVisualization(properties) {}
+    // onMount(() => {});
 
     function closeVisualization() {
         dispatch("close");
     }
-
-    onMount(() => {});
 
     let peace_process_data = [];
     let new_ppdata = [];
@@ -312,8 +311,9 @@
 
     #chart {
         background-color: #171d26;
-        height: 45%;
-        margin: 5px;
+        height: 40%;
+        margin-left: 5px;
+        margin-right: 5px;
         border-radius: 2px;
     }
 
@@ -323,7 +323,8 @@
         overflow-y: auto;
         font-size: 14px;
         background-color: #171d26;
-        margin: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
         border-radius: 2px;
     }
 
