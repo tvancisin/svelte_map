@@ -72,15 +72,13 @@
         d3.axisBottom(messyScaleX).tickFormat(d3.timeFormat("%Y")).ticks(8),
     );
 
-    function updateVisualization(properties) {
-    }
+    function updateVisualization(properties) {}
 
     function closeVisualization() {
         dispatch("close");
     }
 
-    onMount(() => {
-    });
+    onMount(() => {});
 
     let peace_process_data = [];
     let new_ppdata = [];
@@ -157,7 +155,6 @@
         console.log(item);
         return item;
     }
-
 </script>
 
 <div
@@ -165,12 +162,12 @@
     bind:clientWidth={details_width}
     bind:clientHeight={details_height}
 >
-    <button class="close" on:click={closeVisualization}
+    <button class="btn close" on:click={closeVisualization}
         ><i class="fa fa-close"></i></button
     >
 
     <div id="peace_title_div">
-        <h2>Peace Process</h2>
+        <h3>Peace Process</h3>
     </div>
 
     <div id="peace_content">
@@ -181,7 +178,7 @@
         <pre id="month"></pre>
     </div>
 
-    <div id="chart" bind:clientHeight={svg_height} >
+    <div id="chart" bind:clientHeight={svg_height}>
         <svg width={details_width} height={svg_height}>
             <!-- <g
                 bind:this={gx}
@@ -211,8 +208,11 @@
                     {#each new_ppdata as d, i}
                         <path
                             d={segment(d, i, messyScaleX)}
-                            stroke="white"
+                            stroke="gray"
                             stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-opacity="1"
+                            fill-opacity="0"
                         ></path>
                     {/each}
                 </g>
@@ -233,7 +233,7 @@
         background: black;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
         border-radius: 3px;
-        overflow-y: hidden;
+        overflow: hidden;
         z-index: 5;
         font-family: "Montserrat";
     }
@@ -253,7 +253,7 @@
     @media (max-width: 768px) {
         .visualization {
             width: 100%;
-            height: 40%;
+            height: 50%;
             bottom: 0px;
             font-size: 0.8em;
         }
@@ -280,18 +280,36 @@
         font-family: "Montserrat";
     }
 
-    h2 {
+    h3 {
         color: white;
         border-radius: 3px;
         margin: auto;
-        /* background-color: #091f40; */
-        font-size: 22px;
+        font-size: 1.2em;
         padding: 5px;
     }
 
+    @media only screen and (max-width: 1450px) {
+        h3 {
+            font-size: 1.1em;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        h3 {
+            font-size: 1em;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        h3 {
+            font-size: 0.9em;
+        }
+    }
+
     #chart {
-        background-color: black;
+        background-color: #171d26;
         height: 45%;
+        margin: 5px;
     }
 
     #peace_content {
@@ -300,6 +318,7 @@
         overflow-y: auto;
         font-size: 14px;
         background-color: #171d26;
+        margin: 5px;
     }
 
     /* width */
@@ -323,25 +342,53 @@
         background: #555;
     }
 
-    button {
-        background: #fdd900;
+    .btn {
         border: none;
-        padding: 10px;
-        cursor: pointer;
-        font-size: 14px;
+        box-shadow: none;
+        border-radius: 2px;
+        font-size: 1.1em;
         font-family: "Montserrat";
+        color: black;
+        padding: 0.2em 1em;
+        cursor: pointer;
+        background: #fdd92f;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    @media only screen and (max-width: 1450px) {
+        .btn {
+            font-size: 1em;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        .btn {
+            font-size: 0.9em;
+        }
     }
 
     pre {
         margin-top: 2px;
         margin-bottom: 2px;
-        font-size: 14px;
+        font-family: "Montserrat";
         direction: ltr;
+        text-align: left;
         padding-left: 15px;
         padding-right: 15px;
-        overflow-x: visible;
+        font-size: 0.9em;
         white-space: pre-wrap;
-        font-family: "Montserrat";
+    }
+
+    @media only screen and (max-width: 1450px) {
+        pre {
+            font-size: 0.75em;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        pre {
+            font-size: 0.63em;
+        }
     }
 
     :global(a) {

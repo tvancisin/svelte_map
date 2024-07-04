@@ -45,18 +45,31 @@
   }
   h1 {
     position: absolute;
+    top: 0px;
+    font-size: 2em;
     width: 100%;
     margin: 0px;
     text-align: center;
     color: white;
     z-index: 999;
-    top: 0px;
     background-color: black;
   }
 
-  @media (max-width: 768px) {
+  @media only screen and (max-width: 1450px) {
     h1 {
-      font-size: 1.5em;
+      font-size: 1.8em;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    h1 {
+      font-size: 1.6em;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    h1 {
+      font-size: 1.4em;
     }
   }
 </style>
