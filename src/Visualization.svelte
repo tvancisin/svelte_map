@@ -231,7 +231,7 @@
         right: -100%;
         bottom: 0px;
         width: 500px;
-        height: calc(100% - 45px);
+        height: calc(100% - 40px);
         transition: right 0.3s ease;
         background: black;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
@@ -239,6 +239,8 @@
         overflow: hidden;
         z-index: 5;
         font-family: "Montserrat";
+        display: flex;
+        flex-direction: column;
     }
 
     @media (max-width: 1500px) {
@@ -271,7 +273,7 @@
     .close {
         position: absolute;
         z-index: 5;
-        top: 4px;
+        top: 2px;
         left: 4px;
         background: #fdd900;
         color: black;
@@ -285,10 +287,9 @@
 
     h3 {
         color: white;
-        border-radius: 3px;
         margin: auto;
         font-size: 1.2em;
-        padding: 5px;
+        padding: 3px;
     }
 
     @media only screen and (max-width: 1450px) {
@@ -310,15 +311,20 @@
     }
 
     #chart {
+        flex: 1;
+        display: flex;
         background-color: #171d26;
-        height: 40%;
+        height: calc(50% - 40px);
         margin-left: 5px;
         margin-right: 5px;
+        margin-bottom: 5px;
         border-radius: 2px;
     }
 
     #peace_content {
-        height: 45%;
+        flex: 1;
+        height: calc(50% - 40px);
+        align-items: center;
         position: relative;
         overflow-y: auto;
         font-size: 14px;
